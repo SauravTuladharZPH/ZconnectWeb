@@ -1,0 +1,31 @@
+# Python-specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Virtual environment directory
+.venv/
+env/
+venv/
+
+# Test result files
+results/
+output.xml
+log.html
+report.html
+CustomActions.html
+excel.html
+
+# IDEs and editors
+.vscode/
+.idea/
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Environment variable files
+.env
+
+# External dependencies that are not part of version control
+external_libraries/
