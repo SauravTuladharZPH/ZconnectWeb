@@ -34,7 +34,7 @@ jobs:
       - name: Run Robot Framework Tests
         run: |
           mkdir -p results
-          robot --outputdir results tests/
+          robot --outputdir ./results .
 
       # Upload test results as artifacts
       - name: Upload Test Results
