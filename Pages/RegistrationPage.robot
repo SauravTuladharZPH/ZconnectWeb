@@ -73,12 +73,12 @@ Fill Registration Form
     Input Text    ${PHONE_INPUT}    ${phone}
 
 Submit Registration Form
-    Wait Until Element Is Visible    ${REGISTER_BUTTON}    timeout=60
+    Wait Until Element Is Visible    ${REGISTER_BUTTON}    timeout=30
     Click Element    ${REGISTER_BUTTON}
 
 Validate Registration Error Message
     [Arguments]    ${expected_error}
-    Wait Until Element Is Visible    ${ERROR_MESSAGE}    timeout=60
+    Wait Until Element Is Visible    ${ERROR_MESSAGE}    timeout=30
     ${actual_error_message}=    Get Text    ${ERROR_MESSAGE}
     Log    Actual Error Message: ${actual_error_message}
     Log    Expected Error Message: ${expected_error}
@@ -86,14 +86,14 @@ Validate Registration Error Message
 
 Validate No Member Registration
     [Arguments]    ${expected_error}
-    Wait Until Element Is Visible    ${NO_MEMBER_MESSAGE}    timeout=60
+    Wait Until Element Is Visible    ${NO_MEMBER_MESSAGE}    timeout=30
     ${actual_error_message}=    Get Text    ${NO_MEMBER_MESSAGE}
     Log    Actual Error Message: ${actual_error_message}
     Log    Expected Error Message: ${expected_error}
     Should Be Equal    ${actual_error_message}    ${expected_error}    Error message does not match!
 
 Validate Registration Success
-    Wait Until Element Is Visible    ${SUCCESS_MESSAGE}    timeout=60
+    Wait Until Element Is Visible    ${SUCCESS_MESSAGE}    timeout=30
     ${success_message}=    Get Text    ${SUCCESS_MESSAGE}
     Should Contain    ${success_message}    Registration successful
 

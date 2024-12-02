@@ -42,47 +42,47 @@ Verify Care And Claims History Opened
 
 Change Monthly to Accumulate Year
     [Arguments]    ${expected_textAccumulatorYear}
-    Wait Until Element Is Visible    ${MONTHLY_LOCATOR}    timeout=120    error=Accumulate field did not become visible
+    Wait Until Element Is Visible    ${MONTHLY_LOCATOR}    timeout=30    error=Accumulate field did not become visible
     Click Element    ${MONTHLY_LOCATOR}
-    Wait Until Element Is Visible    ${ACCUMULATOR_YEAR_LOCATOR}    timeout=120    error=Accumulate field did not become visible
+    Wait Until Element Is Visible    ${ACCUMULATOR_YEAR_LOCATOR}    timeout=30    error=Accumulate field did not become visible
     Click Element    ${ACCUMULATOR_YEAR_LOCATOR}
-    Wait Until Element Is Visible    ${TOTAL_SPENT_ACCUMULATOR_YEAR_LOCATOR}    timeout=120    error=Accumulate field did not become visible
+    Wait Until Element Is Visible    ${TOTAL_SPENT_ACCUMULATOR_YEAR_LOCATOR}    timeout=30    error=Accumulate field did not become visible
     Page Should Contain    ${expected_textAccumulatorYear}
 
 Check Uncheck Pharmacy
-    Wait Until Element Is Visible    ${PHARMACY_LOCATOR}    timeout=120    error=Pharmacy field did not become visible
+    Wait Until Element Is Visible    ${PHARMACY_LOCATOR}    timeout=30    error=Pharmacy field did not become visible
     Press Keys    ${PHARMACY_LOCATOR}    [Return]
     Sleep    2s
 
 Click First Spending Details
-    Wait Until Element Is Visible    ${SPENDING_DETAILS_LOCATOR}    timeout=120    error=Pharmacy field did not become visible
+    Wait Until Element Is Visible    ${SPENDING_DETAILS_LOCATOR}    timeout=30    error=Pharmacy field did not become visible
     Press Keys    ${SPENDING_DETAILS_LOCATOR}    [Return]
 
 Validate Care And Claim Medical Detail Opened
     [Arguments]    ${expected_textCareAndClaimDetailOpened}    ${expected_textCareAndClaimMedicalDetailOpened}
-    Wait Until Element Is Visible    ${VISIT_DETAILS_LOCATOR}    timeout=120    error=Accumulate field did not become visible
+    Wait Until Element Is Visible    ${VISIT_DETAILS_LOCATOR}    timeout=30    error=Accumulate field did not become visible
     Page Should Contain    ${expected_textCareAndClaimDetailOpened}
     Page Should Contain    ${expected_textCareAndClaimMedicalDetailOpened}
 
 Check Uncheck Medical
-    Wait Until Element Is Visible    ${MEDICAL_LOCATOR}    timeout=120    error=Pharmacy field did not become visible
+    Wait Until Element Is Visible    ${MEDICAL_LOCATOR}    timeout=30    error=Pharmacy field did not become visible
     Press Keys    ${MEDICAL_LOCATOR}    [Return]
     Sleep    2s
 
 Validate Care And Claim Pharmacy Detail Opened
     [Arguments]    ${expected_textCareAndClaimDetailOpened}    ${expected_textCareAndClaimPharmacyDetailOpened}
-    Wait Until Element Is Visible    ${VISIT_DETAILS_LOCATOR}    timeout=120    error=Accumulate field did not become visible
+    Wait Until Element Is Visible    ${VISIT_DETAILS_LOCATOR}    timeout=30    error=Accumulate field did not become visible
     Page Should Contain    ${expected_textCareAndClaimDetailOpened}
     Page Should Contain    ${expected_textCareAndClaimPharmacyDetailOpened}
 
 Select and Validate Care And Claim Family tab
-    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=120    error=Family tab did not become visible
+    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=30    error=Family tab did not become visible
     Press Keys    ${FAMILY_TAB_LOCATOR}    [Return]
     Checkbox Should Be Selected    ${SELF_CHECKBOX_LOCATOR}
 
 Care And Claim Family tab Uncheck Self
     [Arguments]    ${expected_textUncheckSelfNoRecord}
-    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=120    error=Family tab did not become visible
+    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=30    error=Family tab did not become visible
     Press Keys    ${FAMILY_TAB_LOCATOR}    [Return]
     Click Element    ${SELF_CHECKBOX_LOCATOR}
     Checkbox Should Not Be Selected    ${SELF_CHECKBOX_LOCATOR}
@@ -90,5 +90,5 @@ Care And Claim Family tab Uncheck Self
 
 
 Care And Claim Family tab Click
-    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=120    error=Family tab did not become visible
+    Wait Until Element Is Visible    ${FAMILY_TAB_LOCATOR}    timeout=30    error=Family tab did not become visible
     Press Keys    ${FAMILY_TAB_LOCATOR}    [Return]

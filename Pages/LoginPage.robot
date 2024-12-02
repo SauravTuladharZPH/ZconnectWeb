@@ -62,19 +62,19 @@ Open Login Page
 
 Enter Group Code
     [Arguments]    ${group_code}
-    Wait Until Element Is Visible    ${LOCATOR_GROUP_CODE_FIELD}    timeout=120    error=Group code field did not become visible
+    Wait Until Element Is Visible    ${LOCATOR_GROUP_CODE_FIELD}    timeout=30    error=Group code field did not become visible
     Input Text    ${LOCATOR_GROUP_CODE_FIELD}    ${group_code}
     Press Keys    ${LOCATOR_VERIFY_GROUP_BUTTON}    [Return]
 
 Agree Terms
-    Wait Until Element Is Visible    ${LOCATOR_I_AGREE_BUTTON}    timeout=120    error=Agree field did not become visible
+    Wait Until Element Is Visible    ${LOCATOR_I_AGREE_BUTTON}    timeout=30    error=Agree field did not become visible
     Click Element    ${LOCATOR_TERMS_CHECKBOX_1}
     Click Element    ${LOCATOR_TERMS_CHECKBOX_2}
     Click Element    ${LOCATOR_I_AGREE_BUTTON}
 
 Enter Credentials
     [Arguments]    ${username}    ${password}
-    Wait Until Element Is Visible    ${LOCATOR_USERNAME_FIELD}    timeout=120    error=Username field did not become visible
+    Wait Until Element Is Visible    ${LOCATOR_USERNAME_FIELD}    timeout=30    error=Username field did not become visible
     Input Text    ${LOCATOR_USERNAME_FIELD}    ${username}
     Input Text    ${LOCATOR_PASSWORD_FIELD}    ${password}
 
@@ -84,35 +84,35 @@ Click Login
 
 Validate Group Code Error Message
     [Arguments]    ${EmptyGroupCodeError}
-    Wait Until Element Is Visible    ${LOCATOR_GROUP_CODE_ERROR}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_GROUP_CODE_ERROR}    timeout=30
     ${actual_error_message}=    Get Text    ${LOCATOR_GROUP_CODE_ERROR}
     Should Be Equal    ${actual_error_message}    ${EmptyGroupCodeError}    Error message does not match!
 
 Validate Login page Error Message
     [Arguments]    ${LoginError}
-    Wait Until Element Is Visible    ${LOCATOR_LOGIN_ERROR}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_LOGIN_ERROR}    timeout=30
     ${actual_error_message}=    Get Text    ${LOCATOR_LOGIN_ERROR}
     Should Be Equal    ${actual_error_message}    ${LoginError}    Error message does not match!
 
 Forget Password Invalid User
     [Arguments]    ${ForgotUser}    ${LoginError}
-    Wait Until Element Is Visible    ${LOCATOR_FORGET_USERNAME}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGET_USERNAME}    timeout=30
     Input Text    ${LOCATOR_FORGET_USERNAME}    ${ForgotUser}
     Click Element    ${LOCATOR_FORGET_VERIFY}
-    Wait Until Element Is Visible    ${LOCATOR_FORGET_ERROR}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGET_ERROR}    timeout=30
     ${actual_error_message}=    Get Text    ${LOCATOR_FORGET_ERROR}
     Should Be Equal    ${actual_error_message}    ${LoginError}    Error message does not match!
 
 Click Forget Password
-    Wait Until Element Is Visible    ${LOCATOR_FORGET_PASSWORD}     timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGET_PASSWORD}     timeout=30
     Click Element    ${LOCATOR_FORGET_PASSWORD}
 
 Forget Password
     [Arguments]    ${ForgotUser}    ${NewPassword}    ${ConfirmNewPassword}    ${PasswordChangedMsg}
-    Wait Until Element Is Visible    ${LOCATOR_FORGET_USERNAME}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGET_USERNAME}    timeout=30
     Input Text    ${LOCATOR_FORGET_USERNAME}    ${ForgotUser}
     Click Element    ${LOCATOR_FORGET_VERIFY}
-    Wait Until Element Is Visible    ${LOCATOR_OTP_PAGE}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_OTP_PAGE}    timeout=30
     Page Should Contain    Please type the verification code
     Wait Until Element Is Visible    ${LOCATOR_OTP_PAGE}
     Input Text    ${LOCATOR_NEW_PASSWORD}    ${NewPassword}
@@ -121,7 +121,7 @@ Forget Password
     Fetch OTP Test
     Input OTP Into Fields
     Click Element    ${LOCATOR_CONFIRM_BUTTON}
-    Wait Until Element Is Visible    ${LOCATOR_PASSWORD_CHANGED_MSG}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_PASSWORD_CHANGED_MSG}    timeout=30
     ${actual_error_message}=    Get Text    ${LOCATOR_PASSWORD_CHANGED_MSG}
     Should Be Equal    ${actual_error_message}    ${PasswordChangedMsg}    Error message does not match!
 
@@ -137,13 +137,13 @@ Input OTP Into Fields
 
 Click Forget Username
     [Arguments]    ${ForgotUsername}    ${ForgotUsernameSuccessMsg}
-    Wait Until Element Is Visible    ${LOCATOR_FORGOT_USERNAME}     timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGOT_USERNAME}     timeout=30
     Click Element    ${LOCATOR_FORGOT_USERNAME}
     Wait Until Element Is Visible    ${LOCATOR_FORGOT_USERNAME_FIELD}
     Input Text    ${LOCATOR_FORGOT_USERNAME_FIELD}    ${ForgotUsername}
     Click Element    ${LOCATOR_FORGET_VERIFY}
     Validate Username Test
-    Wait Until Element Is Visible    ${LOCATOR_FORGOT_USERNAME_SUCCESS_VAlIDATION}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_FORGOT_USERNAME_SUCCESS_VAlIDATION}    timeout=30
     ${actual_error_message}=    Get Text    ${LOCATOR_FORGOT_USERNAME_SUCCESS_VAlIDATION}
     Should Be Equal    ${actual_error_message}    ${ForgotUsernameSuccessMsg}    Error message does not match!
     ${FORGOTUSERNAMEDETAILS}=    Evaluate    str(${FORGOTUSERNAMEDETAILS})
@@ -151,9 +151,9 @@ Click Forget Username
 
 
 Login Help
-    Wait Until Element Is Visible    ${LOCATOR_CLICK_HELP}     timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_CLICK_HELP}     timeout=30
     Click Element    ${LOCATOR_CLICK_HELP}
-    Wait Until Element Is Visible    ${LOCATOR_GROUP_ID}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_GROUP_ID}    timeout=30
     ${Group_actual_text}=    Get Text    ${LOCATOR_GROUP_ID}
     Should Contain    ${Group_actual_text}    ${HELP_GROUP_ID}    Group does not match!
     ${Help_Msg_actual_text}=    Get Text    ${LOCATOR_CUSTOMER_SUPPORT_MSG}
@@ -164,9 +164,9 @@ Login Help
 
 
 Help Clicking on Change navigates to Group page
-    Wait Until Element Is Visible    ${LOCATOR_CLICK_HELP}     timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_CLICK_HELP}     timeout=30
     Click Element    ${LOCATOR_CLICK_HELP}
-    Wait Until Element Is Visible    ${LOCATOR_CHANGE}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_CHANGE}    timeout=30
     Click Element    ${LOCATOR_CHANGE}
     ${current_url}=    Get Location
     Should Contain    ${current_url}    ${GROUP_PAGE_URL}
@@ -174,9 +174,9 @@ Help Clicking on Change navigates to Group page
 
 
 Locate Information Test
-    Wait Until Element Is Visible    ${LOCATOR_LOCATE_INFORMATION}     timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_LOCATE_INFORMATION}     timeout=30
     Click Element    ${LOCATOR_LOCATE_INFORMATION}
-    Wait Until Element Is Visible    ${LOCATOR_LOCATE_ACCOUNTPAGE}    timeout=60
+    Wait Until Element Is Visible    ${LOCATOR_LOCATE_ACCOUNTPAGE}    timeout=30
     Wait Until Element Is Visible    ${LOCATOR_LOCATE_FIRSTNAME}
     Input Text    ${LOCATOR_LOCATE_FIRSTNAME}    ${LOCATE_FIRSTNAME}
     Input Text    ${LOCATOR_LOCATE_LASTNAME}    ${LOCATE_LASTNAME}

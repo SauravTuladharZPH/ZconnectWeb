@@ -11,22 +11,22 @@ ${SEARCH_BAR_LOCATOR}    //input[@placeholder="How can we help?"]
 
 *** Keywords ***
 Skip MFA Setup
-    Wait Until Element Is Visible    ${SKIP_BUTTON_LOCATOR}    timeout=120    error=Skip button did not become visible
+    Wait Until Element Is Visible    ${SKIP_BUTTON_LOCATOR}    timeout=30    error=Skip button did not become visible
     Click Element    ${SKIP_BUTTON_LOCATOR}
 
 Cancel MFA Prompt
-    Wait Until Element Is Visible    ${MFA_CANCEL_PROMPT_LOCATOR}    timeout=120    error=Cancel MFA prompt did not become visible
+    Wait Until Element Is Visible    ${MFA_CANCEL_PROMPT_LOCATOR}    timeout=30    error=Cancel MFA prompt did not become visible
     Click Element    ${MFA_CANCEL_PROMPT_LOCATOR}
 
 Verify Search Bar
-    Wait Until Element Is Visible    ${SEARCH_BAR_LOCATOR}    timeout=120    error=Search bar did not become visible
+    Wait Until Element Is Visible    ${SEARCH_BAR_LOCATOR}    timeout=30    error=Search bar did not become visible
     Page Should Contain    DAMON MICHAEL!
 
 Validate Menu Items On Homepage
     [Arguments]    @{menu_items}
     FOR    ${item}    IN    @{menu_items}
         Log    Validating menu item: ${item}
-         Wait Until Element Is Visible    //div[text()='${item}']    timeout=120    error=Menu item ${item} did not become visible
+         Wait Until Element Is Visible    //div[text()='${item}']    timeout=30    error=Menu item ${item} did not become visible
         Element Should Be Visible    //div[text()='${item}']
     END
 
