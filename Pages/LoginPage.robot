@@ -45,6 +45,7 @@ ${MONTH_SELECT}    //div[contains(text(),'Date of Birth')]//following::select[2]
 ${DAY_SELECT}      //div[contains(text(),'Date of Birth')]//following::select[3]
 
 ${LOCATE_BUTTON}      //div[text()="Locate"]
+${CHROME_OPTIONS}    --headless --disable-gpu --window-size=1920x1080 --no-sandbox
 
 
 
@@ -55,7 +56,7 @@ ${LOCATE_BUTTON}      //div[text()="Locate"]
 *** Keywords ***
 Open Login Page
     [Arguments]    ${url}
-    Open Browser    ${url}    chrome
+    Open Browser    ${url}    chrome    ${CHROME_OPTIONS}
     #Open Browser    https://zconnect.zakipointhealth.com    chrome
     Maximize Browser Window
 
