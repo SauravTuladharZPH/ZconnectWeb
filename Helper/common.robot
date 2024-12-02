@@ -1,5 +1,6 @@
 *** Settings ***
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/ExcelKeywords.py
+Library    BuiltIn
+Library    ../Helper/ExcelKeywords.py
 
 *** Variables ***
 ${EXCEL_FILE}     Resources/user_data.xlsx

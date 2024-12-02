@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Helper/common.robot
+Resource    ../Helper/common.robot
 
 
 *** Variables ***

@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/ExcelKeywords.py
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Helper/common.robot
+Library    ../Helper/ExcelKeywords.py
+Resource    ../Helper/common.robot
 
 
 

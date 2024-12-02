@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/ExcelKeywords.py
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Helper/common.robot
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Pages/LoginPage.robot
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Pages/HomePage.robot
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Pages/CostEstimatorPage.robot
+Library    ../../Helper/ExcelKeywords.py
+Resource    ../../Helper/common.robot
+Resource    ../../Pages/LoginPage.robot
+Resource    ../../Pages/HomePage.robot
+Resource    ../../Pages/CostEstimatorPage.robot
 
 *** Test Cases ***
 Cost Estimator tests

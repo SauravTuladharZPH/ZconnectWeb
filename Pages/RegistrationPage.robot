@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Helper/common.robot
-Resource   /Users/saurav.tuladhar/Automation/RobotProject/Pages/LoginPage.robot
+Resource    ../Helper/common.robot
+Resource    ../Pages/LoginPage.robot
 
 
 *** Variables ***

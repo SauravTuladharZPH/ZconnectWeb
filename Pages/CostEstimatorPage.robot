@@ -2,9 +2,8 @@
 Library    SeleniumLibrary
 Library    BuiltIn
 Library    RetryFailed    3    5
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/ExcelKeywords.py
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/CustomActions.py
-
+Library    ../Helper/ExcelKeywords.py
+Library    ../Helper/CustomActions.py
 
 
 
