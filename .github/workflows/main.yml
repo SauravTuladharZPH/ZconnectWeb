@@ -69,6 +69,7 @@ jobs:
       # Upload test results as artifacts (optional)
       - name: Upload results
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: robot-results
           path: ./results
