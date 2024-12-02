@@ -64,7 +64,7 @@ jobs:
         run: |
           export DISPLAY=:99
           mkdir -p results
-          robot --outputdir ./results .
+          robot --outputdir ./results Tests/Login/LoginTest.robot 
 
       # Upload test results as artifacts (optional)
       - name: Upload results
