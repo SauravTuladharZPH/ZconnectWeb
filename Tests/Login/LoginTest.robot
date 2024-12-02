@@ -4,6 +4,7 @@ Library    ../../Helper/ExcelKeywords.py
 Resource    ../../Helper/common.robot
 Resource    ../../Pages/LoginPage.robot
 Resource    ../../Pages/HomePage.robot
+Test Teardown    Close Browser
 
 *** Variables ***
 ${Empty_Value}

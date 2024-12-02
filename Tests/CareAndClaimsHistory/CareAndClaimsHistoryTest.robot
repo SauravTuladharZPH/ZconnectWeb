@@ -6,6 +6,7 @@ Resource    ../../Pages/LoginPage.robot
 Resource    ../../Pages/HomePage.robot
 Resource    ../../Pages/CareAndClaimsHistoryPage.robot
 Library    RetryFailed    3    5
+Test Teardown    Close Browser
 
 
 *** Test Cases ***

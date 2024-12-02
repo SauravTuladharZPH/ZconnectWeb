@@ -5,6 +5,7 @@ Resource    ../../Helper/common.robot
 Resource    ../../Pages/LoginPage.robot
 Resource    ../../Pages/HomePage.robot
 Resource    ../../Pages/CostEstimatorPage.robot
+Test Teardown    Close Browser
 
 *** Test Cases ***
 Cost Estimator tests
