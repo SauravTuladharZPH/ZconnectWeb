@@ -2,9 +2,8 @@
 Library    SeleniumLibrary
 Library    BuiltIn
 Library    RetryFailed    3    5
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/ExcelKeywords.py
-Library    /Users/saurav.tuladhar/Automation/RobotProject/Helper/CustomActions.py
-
+Library    ../Helper/ExcelKeywords.py
+Library    ../Helper/CustomActions.py
 
 
 
@@ -62,7 +61,7 @@ Search by Provider Category
     Press Keys       //span[text()='ACUPUNCTURE']//ancestor::div[3][@role='button']    [ENTER]
 
 
-    Wait Until Page Contains Element    //span[text()='ACUPUNCTURE']//ancestor::div[3][@role='button']    timeout=60
+    Wait Until Page Contains Element    //span[text()='ACUPUNCTURE']//ancestor::div[3][@role='button']    timeout=30
     Wait Until Element Is Enabled    //span[text()='ACUPUNCTURE']//ancestor::div[3][@role='button']    timeout=40    error=Acupunture button did not become visible
     Verify Browser Session Is Active
     Custom.Click Element With Actions    //span[text()='ACUPUNCTURE']//ancestor::div[3][@role='button']
@@ -175,11 +174,11 @@ Cost Estimator Search by Procedure
     Input Text    //input[@placeholder="E.g. X-ray or Hospital"]    SINGLE VITAMIN NOS
 
     Sleep    5s
-    Wait Until Element Is Visible    //div[text()='Single Vitamin Nos']    timeout=120    error=Family tab did not become visible
+    Wait Until Element Is Visible    //div[text()='Single Vitamin Nos']    timeout=30    error=Family tab did not become visible
 
     Click Element    (//div[text()='Single Vitamin Nos']//parent::div)[1]
 
-    Wait Until Element Is Visible    //div[text()='Show location in map']    timeout=120    error=Search did not become visible
+    Wait Until Element Is Visible    //div[text()='Show location in map']    timeout=30    error=Search did not become visible
 
     Page Should Contain    Show location in map
 
