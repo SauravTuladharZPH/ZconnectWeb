@@ -56,7 +56,7 @@ ${CHROME_OPTIONS}    --headless --disable-gpu --window-size=1920x1080 --no-sandb
 *** Keywords ***
 Open Login Page
     [Arguments]    ${url}
-    Open Browser    ${url}    chrome    ${CHROME_OPTIONS}
+    Open Browser    ${url}    chrome
     #Open Browser    https://zconnect.zakipointhealth.com    chrome
     Maximize Browser Window
 
