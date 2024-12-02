@@ -310,7 +310,6 @@ def validate_locateInformation_from_gmail(email_user, email_password, sender_ema
 
 @keyword("Read HomepageMenu From Excel")
 def read_homepagemenu_from_excel(file_path, sheet_name):
-    from openpyxl import load_workbook
     try:
         workbook = load_workbook(file_path)
         sheet = workbook[sheet_name]
@@ -321,25 +320,28 @@ def read_homepagemenu_from_excel(file_path, sheet_name):
         raise Exception(f"Error reading Excel file: {e}")
 
 
-
-
 @keyword("Read Homepage Menu Data From Excel")
 def read_homepage_menu_data_from_excel(file_path, sheet_name):
-    """
-    Reads menu data (Menu Name, Expected Heading, and URL) from the specified Excel file and sheet.
-    Returns a list of dictionaries, each containing Menu Name, Expected Heading, and URL.
-    """
     try:
-        workbook = load_workbook(file_path)
+        workbook = load_workbook(file_path, data_only=True)  # Ensure data is read correctly
         sheet = workbook[sheet_name]
         menu_data = []
-        for row in sheet.iter_rows(min_row=2, max_col=3, values_only=True):  # Start reading from the 2nd row
-            if row[0]:  # Ensure Menu Name is not empty
+
+        # Ensure the header row is skipped (assuming row 1 is the header)
+        for row in sheet.iter_rows(min_row=2, max_col=3):
+            # Extract values from row
+            menu_name = row[0].value if row[0].value else ""
+            expected_heading = row[1].value if row[1].value else ""
+            url = row[2].value if row[2].value else ""
+
+            # Only add non-empty rows
+            if menu_name:
                 menu_data.append({
-                    "menu_name": row[0],
-                    "expected_heading": row[1] if row[1] else "",  # Handle empty Expected Heading
-                    "url": row[2] if row[2] else "",  # Handle empty URL
+                    "menu_name": menu_name,
+                    "expected_heading": expected_heading,
+                    "url": url,
                 })
+
         return menu_data
     except Exception as e:
         raise Exception(f"Error reading Excel file: {e}")
