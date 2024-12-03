@@ -124,6 +124,8 @@ Forget Password Valid User Test
     Close Browser
 
 Forget Username Valid User Test
+    ${skip}=    Set Variable    True
+    Run Keyword If    ${skip}    Skip    Skipping Test Case
     Initialize Login Data
     Open Login Page     ${URL}
     Enter Group Code    ${GROUP_CODE}

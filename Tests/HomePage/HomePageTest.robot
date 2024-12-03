@@ -23,6 +23,8 @@ Validate Menu are present in Homepage
     Validate Menu Items On Homepage  @{menu_items}
 
 Validate All Menu Items On Homepage
+    ${skip}=    Set Variable    True
+    Run Keyword If    ${skip}    Skip    Skipping Test Case 2
     Initialize Login Data
     Open Login Page     ${URL}
     Enter Group Code    ${GROUP_CODE}

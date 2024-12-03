@@ -117,7 +117,7 @@ Forget Password
     Wait Until Element Is Visible    ${LOCATOR_OTP_PAGE}
     Input Text    ${LOCATOR_NEW_PASSWORD}    ${NewPassword}
     Input Text    ${LOCATOR_CONFIRM_NEW_PASSWORD}    ${ConfirmNewPassword}
-#    Sleep    5s
+    Sleep    2s
     Fetch OTP Test
     Input OTP Into Fields
     Click Element    ${LOCATOR_CONFIRM_BUTTON}
@@ -184,13 +184,8 @@ Locate Information Test
     Select From List By Value    ${YEAR_SELECT}    ${LOCATE_YEAR}
     Select From List By Value    ${MONTH_SELECT}    ${LOCATE_MONTH}
     Select From List By Value    ${DAY_SELECT}    ${LOCATE_DAY}
-
     Click Element    ${LOCATE_BUTTON}
-    Sleep    5s
-
+    Sleep    2s
     Validate Locate Information Test
-
     ${FORGOTLOCATEDETAILS}=    Evaluate    str(${FORGOTLOCATEDETAILS})
     Should Be Equal    ${FORGOTLOCATEDETAILS}    True    User details in Email not matched!
-
-    Sleep    15s
