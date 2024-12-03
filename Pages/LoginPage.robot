@@ -184,13 +184,8 @@ Locate Information Test
     Select From List By Value    ${YEAR_SELECT}    ${LOCATE_YEAR}
     Select From List By Value    ${MONTH_SELECT}    ${LOCATE_MONTH}
     Select From List By Value    ${DAY_SELECT}    ${LOCATE_DAY}
-
     Click Element    ${LOCATE_BUTTON}
-    Sleep    5s
-
+    Sleep    2s
     Validate Locate Information Test
-
     ${FORGOTLOCATEDETAILS}=    Evaluate    str(${FORGOTLOCATEDETAILS})
     Should Be Equal    ${FORGOTLOCATEDETAILS}    True    User details in Email not matched!
-
-    Sleep    15s
