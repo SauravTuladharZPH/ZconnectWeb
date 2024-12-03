@@ -117,7 +117,7 @@ Forget Password
     Wait Until Element Is Visible    ${LOCATOR_OTP_PAGE}
     Input Text    ${LOCATOR_NEW_PASSWORD}    ${NewPassword}
     Input Text    ${LOCATOR_CONFIRM_NEW_PASSWORD}    ${ConfirmNewPassword}
-#    Sleep    5s
+    Sleep    2s
     Fetch OTP Test
     Input OTP Into Fields
     Click Element    ${LOCATOR_CONFIRM_BUTTON}
