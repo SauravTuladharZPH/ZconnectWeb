@@ -68,18 +68,18 @@ def fetch_otp_from_gmail(email_user, email_password, sender_email, subject):
         # Select the inbox folder
         imap.select("INBOX")
 
-        # Search for recent emails from the sender with the subject
+        # Search for unread emails from the sender with the specific subject
         status, messages = imap.search(
-            None, f'FROM "{sender_email}" SUBJECT "{subject}"'
+            None, f'(FROM "{sender_email}" SUBJECT "{subject}" UNSEEN)'
         )
         email_ids = messages[0].split()
 
-        # If no emails are found, return None
+        # If no unread emails are found, return None
         if not email_ids:
-            print("No emails found matching the criteria.")
+            print("No unread emails found matching the criteria.")
             return None
 
-        # Fetch only the most recent email
+        # Fetch only the most recent unread email
         latest_email_id = email_ids[-1]
         status, msg_data = imap.fetch(latest_email_id, "(RFC822)")
 
