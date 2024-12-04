@@ -345,3 +345,30 @@ def read_homepage_menu_data_from_excel(file_path, sheet_name):
         return menu_data
     except Exception as e:
         raise Exception(f"Error reading Excel file: {e}")
+
+@keyword("Read Expected Menus From Excel")
+def read_expected_menus_from_excel(file_path,sheet_name):
+        """Reads expected menu items from an Excel file."""
+        try:
+            workbook = load_workbook(filename=file_path)
+            sheet = workbook[sheet_name]
+            menus = [cell.value for cell in sheet['A'] if
+                     cell.value is not None]  # Read all non-empty values from column A
+            workbook.close()
+            return menus
+        except Exception as e:
+            raise RuntimeError(f"Error reading Excel file: {e}")
+
+@keyword("Validate Sidebar Menus")
+def validate_sidebar_menus(actual_menus, expected_menus):
+        """Compares actual sidebar menus with expected menus."""
+        missing_menus = [menu for menu in expected_menus if menu not in actual_menus]
+        extra_menus = [menu for menu in actual_menus if menu not in expected_menus]
+
+        if missing_menus or extra_menus:
+            error_message = ""
+            if missing_menus:
+                error_message += f"Missing menus: {', '.join(missing_menus)}. "
+            if extra_menus:
+                error_message += f"Extra menus: {', '.join(extra_menus)}."
+            raise AssertionError(error_message)
