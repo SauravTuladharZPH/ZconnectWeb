@@ -35,6 +35,7 @@ ${SELF_CHECKBOX_LOCATOR}    //div[text()='Self']//preceding::input[1]
 
 Click Care And Claims History Menu
     Wait Until Element Is Visible    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button did not become visible
+    Wait Until Element Is Visible    ${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}    timeout=40    error=Care And Claims History button did not become visible
     Click Element    ${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}
 
 Verify Care And Claims History Opened
