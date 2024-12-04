@@ -346,18 +346,20 @@ def read_homepage_menu_data_from_excel(file_path, sheet_name):
     except Exception as e:
         raise Exception(f"Error reading Excel file: {e}")
 
-@keyword("Read Expected Menus From Excel")
-def read_expected_menus_from_excel(file_path,sheet_name):
-        """Reads expected menu items from an Excel file."""
-        try:
-            workbook = load_workbook(filename=file_path)
-            sheet = workbook[sheet_name]
-            menus = [cell.value for cell in sheet['A'] if
-                     cell.value is not None]  # Read all non-empty values from column A
-            workbook.close()
-            return menus
-        except Exception as e:
-            raise RuntimeError(f"Error reading Excel file: {e}")
+@keyword("Read Expected Menus and Submenus From Excel")
+def read_expected_menus_and_submenus_from_excel(file_path, sheet_name):
+    try:
+        workbook = load_workbook(filename=file_path)
+        sheet = workbook[sheet_name]
+        menus = {}
+        for row in sheet.iter_rows(min_row=2, max_col=2, values_only=True):  # Skip header row
+            main_menu = row[0]
+            submenus = row[1].split(",") if row[1] else []  # Split submenus by commas if they exist
+            menus[main_menu] = [submenu.strip() for submenu in submenus]
+        workbook.close()
+        return menus
+    except Exception as e:
+        raise RuntimeError(f"Error reading Excel file: {e}")
 
 @keyword("Validate Sidebar Menus")
 def validate_sidebar_menus(actual_menus, expected_menus):
