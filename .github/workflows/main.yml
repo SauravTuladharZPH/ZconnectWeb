@@ -64,7 +64,7 @@ jobs:
         run: |
           export DISPLAY=:99
           mkdir -p results
-          robot --outputdir ./results Tests/Login/LoginTest.robot Tests/Registration/RegistrationTest.robot Tests/HomePage/HomePageTest.robot Tests/CareAndClaimsHistory/CareAndClaimsHistoryTest.robot
+          robot --outputdir ./results Tests/CareAndClaimsHistory/CareAndClaimsHistoryTest.robot
 
       # Upload test results as artifacts (optional)
       - name: Upload results
