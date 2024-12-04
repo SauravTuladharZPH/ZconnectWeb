@@ -3,8 +3,8 @@ Library    SeleniumLibrary
 Library    BuiltIn
 
 *** Variables ***
-${CARE_AND_CLAIMS_HISTORY_LOCATOR}    //div[text()='Care & Claims History']
-${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}    //div[text()='Care & Claims History']//ancestor::div[2][@role='button']
+${CARE_AND_CLAIMS_HISTORY_LOCATOR}    //span[text()='Care & Claims History']
+${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}    //div[@id="care-&-claims-history-feature-list"]
 ${TOTAL_SPENT_LOCATOR}    //div[text()='TOTAL SPENT IN LAST 12 MONTHS']
 ${MONTHLY_LOCATOR}    //div[text()='Monthly']
 ${ACCUMULATOR_YEAR_LOCATOR}    //div[text()='Accumulator Year-to-Date']
@@ -17,20 +17,25 @@ ${FAMILY_TAB_LOCATOR}    //div[text()='Family']
 ${SELF_CHECKBOX_LOCATOR}    //div[text()='Self']//preceding::input[1]
 
 *** Keywords ***
+
+#Click Care And Claims History Menu
+#    Sleep    5s
+#    Reload Page
+#    Wait Until Element Is Visible    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button did not become visible
+#    Wait Until Element Is Enabled    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button is not enabled for interaction
+#    Sleep    10s
+#    Execute JavaScript    var overlay = document.querySelector('.modal-overlay'); if (overlay) overlay.style.display='none';
+#    Execute JavaScript    var element = document.evaluate("${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.setAttribute('type', 'button'); element.style.border='3px solid red'; element.focus(); element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
+#    Wait Until Element Is Enabled    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button is not enabled for interaction
+#    Execute JavaScript    var element = document.evaluate("${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.focus(); element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); element.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true })); }
+#    Log    Javascript attempted on 'Care And Claims History' button
+#    Double Click Element    ${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}
+#    Log    Double Click attempted on 'Care And Claims History' button
+#    #Sleep    10s
+
 Click Care And Claims History Menu
-    Sleep    5s
-    Reload Page
     Wait Until Element Is Visible    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button did not become visible
-    Wait Until Element Is Enabled    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button is not enabled for interaction
-    Sleep    10s
-    Execute JavaScript    var overlay = document.querySelector('.modal-overlay'); if (overlay) overlay.style.display='none';
-    Execute JavaScript    var element = document.evaluate("${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.setAttribute('type', 'button'); element.style.border='3px solid red'; element.focus(); element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
-    Wait Until Element Is Enabled    ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    timeout=40    error=Care And Claims History button is not enabled for interaction
-    Execute JavaScript    var element = document.evaluate("${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.focus(); element.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); element.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true })); }
-    Log    Javascript attempted on 'Care And Claims History' button
-    Double Click Element    ${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}
-    Log    Double Click attempted on 'Care And Claims History' button
-    #Sleep    10s
+    Click Element    ${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}
 
 Verify Care And Claims History Opened
     [Arguments]    ${CareAndClaimURL}    ${CareAndClaimExpectedText}
