@@ -7,7 +7,6 @@ Resource    ../Helper/common.robot
 ${SKIP_BUTTON_LOCATOR}    //div[contains(text(),'Skip')]
 ${MFA_CANCEL_PROMPT_LOCATOR}    //p[contains(text(),'Are you sure you want to cancel MFA setup?')]//following::span[1]
 ${SEARCH_BAR_LOCATOR}    //input[@placeholder="How can we help?"]
-#${HOMEPAGE_MENU_ITEMS}    //div[text()='${item}']
 
 *** Keywords ***
 Skip MFA Setup
@@ -26,41 +25,49 @@ Validate Menu Items On Homepage
     [Arguments]    @{menu_items}
     FOR    ${item}    IN    @{menu_items}
         Log    Validating menu item: ${item}
-         Wait Until Element Is Visible    //div[text()='${item}']    timeout=30    error=Menu item ${item} did not become visible
-        Element Should Be Visible    //div[text()='${item}']
+         Wait Until Element Is Visible    //span[text()='${item}']    timeout=30    error=Menu item ${item} did not become visible
+        Element Should Be Visible    //span[text()='${item}']
     END
 
 
-
-Validate All Menu Items On Homepage
-    [Arguments]    @{menu_data}
+Validating homepage menu heading and url when menu items are opened
+    [Arguments]    ${menu_data}
     FOR    ${menu_item}    IN    @{menu_data}
-        ${menu_name}=         Set Variable    ${menu_item["menu_name"]}  # Correctly extract the menu name
+        ${menu_name}=         Set Variable    ${menu_item["menu_name"]}
         ${expected_heading}=  Set Variable    ${menu_item["expected_heading"]}
         ${expected_url}=      Set Variable    ${menu_item["url"]}
-
-        Log    Validating menu item: ${menu_name}  # Log the menu name for debugging
-        Log    Validating menu item heading: ${expected_heading}  # Log the menu name for debugging
-        Log    Validating menu item url: ${expected_url}  # Log the menu name for debugging
-
+        Log    Validating menu item: ${menu_name}
+        Log    Validating menu item heading: ${expected_heading}
+        Log    Validating menu item URL: ${expected_url}
         # Validate the menu item is visible and clickable
-        Wait Until Element Is Visible    //div[text()='${menu_name}']    timeout=30    error=Menu item ${menu_name} did not become visible
-        Element Should Be Visible       //div[text()='${menu_name}']
-        Click Element                   //div[text()='${menu_name}']
-        Sleep    20s
-
-        # Validate Page Heading
-        IF    '${expected_heading}' != ''  # Correct string comparison
-            Wait Until Element Is Visible    //div[text()='${expected_heading}']    timeout=30    error=Expected heading ${expected_heading} not found for menu item ${menu_name}
-            Element Text Should Be    //div[text()='${expected_heading}']    ${expected_heading}
-        END
-
-        # Validate URL
-        IF    '${expected_url}' != ''  # Correct string comparison
-            ${current_url}=    Get Location
-            Run Keyword If    "${expected_url}" not in "${current_url}"    Fail    URL validation failed for ${menu_name}. Expected part: ${expected_url}, Found: ${current_url}
-        END
-
-        # Go back to the homepage or menu list
-        Go Back
+        Wait Until Element Is Visible    //span[text()='${menu_name}']    timeout=30    error=Menu item ${menu_name} did not become visible
+        Element Should Be Visible       //span[text()='${menu_name}']
+        Sleep    1s
+        Click Element                   //span[text()='${menu_name}']
+        Sleep    2s
+        Run Keyword If    '${menu_name}' == 'TelaDoc'    Validate TelaDoc Tab
+        Run Keyword If    '${menu_name}' != 'TelaDoc'    Validate Menu Navigation    ${menu_name}    ${expected_heading}    ${expected_url}
     END
+
+Validate TelaDoc Tab
+    ${windows}=    Get Window Handles
+    ${window_count}=    Get Length    ${windows}
+    Should Be Equal As Numbers    ${window_count}    2
+    Switch Window    ${windows[1]}
+    Close Window
+    Switch Window    ${windows[0]}
+
+Validate Menu Navigation
+    [Arguments]    ${menu_name}    ${expected_heading}    ${expected_url}
+    # Validate Page Heading
+    IF    '${expected_heading}' != ''
+        Wait Until Element Is Visible    //div[text()='${expected_heading}']    timeout=30    error=Expected heading ${expected_heading} not found for menu item ${menu_name}
+        Element Text Should Be    //div[text()='${expected_heading}']    ${expected_heading}
+    END
+    # Validate URL
+    IF    '${expected_url}' != ''
+        ${current_url}=    Get Location
+        Run Keyword If    "${expected_url}" not in "${current_url}"    Fail    URL validation failed for ${menu_name}. Expected part: ${expected_url}, Found: ${current_url}
+    END
+    # Go back to the homepage
+    Go Back
