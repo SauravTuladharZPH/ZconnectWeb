@@ -308,6 +308,45 @@ def validate_locateInformation_from_gmail(email_user, email_password, sender_ema
             pass
 
 
+@keyword("Read HomepageMenu From Excel")
+def read_homepagemenu_from_excel(file_path, sheet_name):
+    try:
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        # Collect menu items from the first column (ignoring empty cells)
+        menu_items = [row[0].value.strip() for row in sheet.iter_rows(min_row=2, max_col=1) if row[0].value]
+        return menu_items
+    except Exception as e:
+        raise Exception(f"Error reading Excel file: {e}")
+
+
+@keyword("Read Homepage Menu Data From Excel")
+def read_homepage_menu_data_from_excel(file_path, sheet_name):
+    try:
+        workbook = load_workbook(file_path, data_only=True)  # Ensure data is read correctly
+        sheet = workbook[sheet_name]
+        menu_data = []
+
+        # Ensure the header row is skipped (assuming row 1 is the header)
+        for row in sheet.iter_rows(min_row=2, max_col=3):
+            # Extract values from row
+            menu_name = row[0].value if row[0].value else ""
+            expected_heading = row[1].value if row[1].value else ""
+            url = row[2].value if row[2].value else ""
+
+            # Only add non-empty rows
+            if menu_name:
+                menu_data.append({
+                    "menu_name": menu_name,
+                    "expected_heading": expected_heading,
+                    "url": url,
+                })
+
+        return menu_data
+    except Exception as e:
+        raise Exception(f"Error reading Excel file: {e}")
+
+
 def read_expected_menus_and_submenus_from_excel(file_path, sheet_name):
     try:
         workbook = load_workbook(filename=file_path)
