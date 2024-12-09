@@ -181,3 +181,14 @@ Go Back And Reopen Menu
     Click Element    //div[contains(@class, 'css-901oao') and contains(text(), '${main_menu}')]
     Click Element    //div[@id="sideBarMenu"]
     Sleep    3s
+
+
+Logout Validations
+    Click Element    //div[@id='logout']
+    Wait Until Element Is Visible    //div[contains(text(), 'Please login with ZPH credentials')]    timeout=30
+    ${login_Heading}=    Get Text    //div[contains(text(), 'Please login with ZPH credentials')]
+    Should Be Equal    ${login_Heading}    Please login with ZPH credentials    Error message does not match!
+    Element Should Be Visible    //div[contains(text(), 'Please login with ZPH credentials')]
+    Element Should Be Visible    //input[@placeholder='Enter your username']
+    Element Should Be Visible    //input[@placeholder='Enter your password']
+    Element Should Be Visible    //div[(text()='Login')]
