@@ -308,69 +308,22 @@ def validate_locateInformation_from_gmail(email_user, email_password, sender_ema
             pass
 
 
-@keyword("Read HomepageMenu From Excel")
-def read_homepagemenu_from_excel(file_path, sheet_name):
-    try:
-        workbook = load_workbook(file_path)
-        sheet = workbook[sheet_name]
-        # Collect menu items from the first column (ignoring empty cells)
-        menu_items = [row[0].value.strip() for row in sheet.iter_rows(min_row=2, max_col=1) if row[0].value]
-        return menu_items
-    except Exception as e:
-        raise Exception(f"Error reading Excel file: {e}")
-
-
-@keyword("Read Homepage Menu Data From Excel")
-def read_homepage_menu_data_from_excel(file_path, sheet_name):
-    try:
-        workbook = load_workbook(file_path, data_only=True)  # Ensure data is read correctly
-        sheet = workbook[sheet_name]
-        menu_data = []
-
-        # Ensure the header row is skipped (assuming row 1 is the header)
-        for row in sheet.iter_rows(min_row=2, max_col=3):
-            # Extract values from row
-            menu_name = row[0].value if row[0].value else ""
-            expected_heading = row[1].value if row[1].value else ""
-            url = row[2].value if row[2].value else ""
-
-            # Only add non-empty rows
-            if menu_name:
-                menu_data.append({
-                    "menu_name": menu_name,
-                    "expected_heading": expected_heading,
-                    "url": url,
-                })
-
-        return menu_data
-    except Exception as e:
-        raise Exception(f"Error reading Excel file: {e}")
-
-@keyword("Read Expected Menus and Submenus From Excel")
 def read_expected_menus_and_submenus_from_excel(file_path, sheet_name):
     try:
         workbook = load_workbook(filename=file_path)
         sheet = workbook[sheet_name]
         menus = {}
-        for row in sheet.iter_rows(min_row=2, max_col=2, values_only=True):  # Skip header row
+        for row in sheet.iter_rows(min_row=2, values_only=True):  # Skip header row
             main_menu = row[0]
-            submenus = row[1].split(",") if row[1] else []  # Split submenus by commas if they exist
-            menus[main_menu] = [submenu.strip() for submenu in submenus]
+            submenus = row[1].split(",") if row[1] else []  # Submenus as a list
+            heading = row[2]
+            url = row[3]
+            menus[main_menu] = {
+                "submenus": [submenu.strip() for submenu in submenus],
+                "heading": heading.strip() if heading else "",
+                "url": url.strip() if url else "",
+            }
         workbook.close()
-        return menus
+        return menus  # This should be a dictionary
     except Exception as e:
         raise RuntimeError(f"Error reading Excel file: {e}")
-
-@keyword("Validate Sidebar Menus")
-def validate_sidebar_menus(actual_menus, expected_menus):
-        """Compares actual sidebar menus with expected menus."""
-        missing_menus = [menu for menu in expected_menus if menu not in actual_menus]
-        extra_menus = [menu for menu in actual_menus if menu not in expected_menus]
-
-        if missing_menus or extra_menus:
-            error_message = ""
-            if missing_menus:
-                error_message += f"Missing menus: {', '.join(missing_menus)}. "
-            if extra_menus:
-                error_message += f"Extra menus: {', '.join(extra_menus)}."
-            raise AssertionError(error_message)

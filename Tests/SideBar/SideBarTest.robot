@@ -6,7 +6,7 @@ Resource    ../../Pages/LoginPage.robot
 Resource    ../../Pages/HomePage.robot
 Resource    ../../Pages/SideBarPage.robot
 Library    Collections
-#Test Teardown    Close Browser
+Test Teardown    Close Browser
 
 *** Test Cases ***
 Validate Sidebar Menu Items
@@ -19,21 +19,15 @@ Validate Sidebar Menu Items
     Skip MFA Setup
     Cancel MFA Prompt
     Verify Search Bar
-    Sleep    5s
+    Sleep    3s
     Click SideBar
-    Sleep    15s
+    Sleep    3s
 
-#    # Step 3: Fetch actual menu items
-#    ${actual_menus}=    Get WebElements Texts    (//div[contains(@class,'css-901oao')])[position() >= 247 and position() <= 254]
-#
-#    # Step 4: Fetch expected menu items from Excel
-#    ${expected_menus}=  Read Expected Menus and Submenus From Excel    ${EXCEL_FILE}    ${SIDEBAR_SHEET_NAME}
-#    ${expected_keys}=   Create List    @{expected_menus.keys()}
+    ${menu_data}=    Read Expected Menus and Submenus From Excel    ${EXCEL_FILE}    ${SIDEBAR_SHEET_NAME}
+    Log    ${menu_data}
 
-    # Step 5: Validate main menu items
-    Validate Sidebar Menu Items
-
-    # Step 6: Validate submenus for each menu item
-    FOR    ${menu}    IN    @{expected_keys}
-        Validate Submenu    ${menu}    ${expected_menus[${menu}]}
+    # Iterate over each main menu
+    FOR    ${main_menu}    IN    @{menu_data.keys()}
+        ${menu_details}=    Get From Dictionary    ${menu_data}    ${main_menu}
+        Validate Sidebar Menu Items    ${main_menu}    ${menu_details}
     END
