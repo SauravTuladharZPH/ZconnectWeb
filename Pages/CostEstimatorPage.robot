@@ -1,7 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    BuiltIn
-#Library    RetryFailed    3    5
+Library    RetryFailed    3    5
 Library    ../Helper/ExcelKeywords.py
 Library    Collections
 Library    String
