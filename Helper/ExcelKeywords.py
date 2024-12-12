@@ -363,3 +363,24 @@ def read_provider_category_and_specialities_data(file_path, sheet_name):
             # Split the specialties by comma and strip extra spaces
             data[category] = [s.strip() for s in specialities.split(",")]
     return data
+
+
+def read_expected_menus_and_submenus_from_excel(file_path, sheet_name):
+    try:
+        workbook = load_workbook(filename=file_path)
+        sheet = workbook[sheet_name]
+        menus = {}
+        for row in sheet.iter_rows(min_row=2, values_only=True):  # Skip header row
+            main_menu = row[0]
+            submenus = row[1].split(",") if row[1] else []  # Submenus as a list
+            heading = row[2]
+            url = row[3]
+            menus[main_menu] = {
+                "submenus": [submenu.strip() for submenu in submenus],
+                "heading": heading.strip() if heading else "",
+                "url": url.strip() if url else "",
+            }
+        workbook.close()
+        return menus  # This should be a dictionary
+    except Exception as e:
+        raise RuntimeError(f"Error reading Excel file: {e}")

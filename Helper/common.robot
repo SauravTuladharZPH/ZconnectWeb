@@ -9,7 +9,7 @@ ${CARE_SHEET_NAME}      CareAndClaims
 ${CostEstimator_SHEET_NAME}      CostEstimator
 ${REGISTRATION_SHEET_NAME}     RegistrationData
 ${HOMEPAGE_SHEET_NAME}     HomeMenu
-
+${SIDEBAR_SHEET_NAME}     SideBar
 
 
 *** Keywords ***
