@@ -6,6 +6,9 @@ import re
 from bs4 import BeautifulSoup
 from email.header import decode_header
 
+from selenium import webdriver
+from robot.libraries.BuiltIn import BuiltIn
+
 menu_items = []
 
 
@@ -345,3 +348,18 @@ def read_homepage_menu_data_from_excel(file_path, sheet_name):
         return menu_data
     except Exception as e:
         raise Exception(f"Error reading Excel file: {e}")
+
+
+@keyword("Read Cost Estimator Provider Category and Specialities Test Data")
+def read_provider_category_and_specialities_data(file_path, sheet_name):
+    workbook = load_workbook(file_path)
+    sheet = workbook[sheet_name]
+    data = {}
+    # Iterate through the rows, starting from the second row
+    for row in sheet.iter_rows(min_row=2, values_only=True):  # Assuming headers are in the first row
+        category = row[4]  # Column E (zero-indexed: 4th column)
+        specialities = row[5]  # Column F (zero-indexed: 5th column)
+        if category and specialities:
+            # Split the specialties by comma and strip extra spaces
+            data[category] = [s.strip() for s in specialities.split(",")]
+    return data
