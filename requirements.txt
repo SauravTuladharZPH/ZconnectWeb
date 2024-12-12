@@ -7,7 +7,6 @@ natsort>=5.2.0  # Sorting helper
 pendulum>=3.0.0  # Advanced datetime handling
 robotframework>=7.1.1
 robotframework-seleniumlibrary>=6.3.0  # Selenium-based web testing
-robotframework-excel>=1.0.0b4  # For working with Excel in Robot Framework
 selenium>=4.26.1  # Web automation
 soupsieve>=2.6  # CSS selector library for BeautifulSoup
 tzdata>=2024.2  # Timezone data
