@@ -4,7 +4,7 @@ Library    BuiltIn
 
 *** Variables ***
 ${CARE_AND_CLAIMS_HISTORY_LOCATOR}    //span[text()='Care & Claims History']
-${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}    //div[@id="care-&-claims-history-feature-list"]
+${CARE_AND_CLAIMS_HISTORY_BUTTON_LOCATOR}    //div[@id="feature-list-care-&-claims-history"]
 ${TOTAL_SPENT_LOCATOR}    //div[text()='TOTAL SPENT IN LAST 12 MONTHS']
 ${MONTHLY_LOCATOR}    //div[text()='Monthly']
 ${ACCUMULATOR_YEAR_LOCATOR}    //div[text()='Accumulator Year-to-Date']

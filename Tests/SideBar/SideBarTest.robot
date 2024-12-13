@@ -31,3 +31,19 @@ Validate Sidebar Menu Items
         ${menu_details}=    Get From Dictionary    ${menu_data}    ${main_menu}
         Validate Sidebar Menu Items    ${main_menu}    ${menu_details}
     END
+
+
+Logout Test
+    Initialize Login Data
+    Open Login Page     ${URL}
+    Enter Group Code    ${GROUP_CODE}
+    Agree Terms
+    Enter Credentials   ${USERNAME}    ${PASSWORD}
+    Click Login
+    Skip MFA Setup
+    Cancel MFA Prompt
+    Verify Search Bar
+    Sleep    3s
+    Click SideBar
+    Sleep    3s
+    Logout Validations
