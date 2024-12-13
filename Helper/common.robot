@@ -169,3 +169,14 @@ Read Homepage Menu Test Data
     ${menu_data}=    Read Homepage Menu Data From Excel    ${EXCEL_FILE}    ${HOMEPAGE_SHEET_NAME}
     Log Many         ${menu_data}
     RETURN           ${menu_data}
+
+
+Read Cost Estimator Provider Category and Specialities
+    ${menu_data}=    Read Cost Estimator Provider Category and Specialities Test Data    ${EXCEL_FILE}    ${CostEstimator_SHEET_NAME}
+    Log Many    ${menu_data}
+    RETURN           ${menu_data}
+
+Set Geolocation
+    [Arguments]    ${latitude}    ${longitude}    ${accuracy}
+    ${script}=    Catenate    SEPARATOR=    navigator.geolocation.getCurrentPosition = function(success) {var position = {coords: {latitude: ${latitude}, longitude: ${longitude}, accuracy: ${accuracy}}}; success(position);};
+    Execute Javascript    ${script}

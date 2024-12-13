@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    ../../Helper/ExcelKeywords.py
+Library    RetryFailed    3    5
 Resource    ../../Helper/common.robot
 Resource    ../../Pages/LoginPage.robot
 Resource    ../../Pages/HomePage.robot
