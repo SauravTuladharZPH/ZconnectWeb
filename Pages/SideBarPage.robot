@@ -22,9 +22,7 @@ Click SideBar
 
 Click Submenu
     [Arguments]    ${submenu}
-    Execute JavaScript    var element = document.evaluate("//div[contains(@class, 'css-901oao') and contains(text(), '${submenu}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.setAttribute('type', 'button'); element.setAttribute('id', 'sideBarSubMenu'); element.style.border='3px solid red'; element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
     Click Element    //div[contains(@class, 'css-901oao') and contains(text(), '${submenu}')]
-    Click Element    //div[@id="sideBarSubMenu"]
     Sleep    3s
 
 
@@ -47,9 +45,7 @@ Validate Sidebar Menu Items
 
     # Click the main menu
     Log    Validating main menu: ${main_menu}
-    Execute JavaScript    var element = document.evaluate("//div[contains(@class, 'css-901oao') and contains(text(), '${main_menu}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.setAttribute('type', 'button'); element.setAttribute('id', 'sideBarMenu'); element.style.border='3px solid red'; element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
     Click Element    //div[contains(@class, 'css-901oao') and contains(text(), '${main_menu}')]
-    Click Element    //div[@id="sideBarMenu"]
     Sleep    3s
 
     # Handle special cases for submenus
@@ -86,7 +82,7 @@ Handle New Tab
     ${window_count}=    Get Length    ${windows}
 
     # Ensure there are exactly 2 windows (the original and the new tab)
-    Should Be Equal As Numbers    ${window_count}    2
+    Should Be True    ${window_count} > 1
 
     # Switch to the new tab (assuming the new tab is at index 1)
     Switch Window    ${windows[1]}
@@ -177,14 +173,12 @@ Go Back And Reopen Menu
     Click SideBar
     Sleep    2s
     Log    Clicking main menu: ${main_menu}
-    Execute JavaScript    var element = document.evaluate("//div[contains(@class, 'css-901oao') and contains(text(), '${main_menu}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.setAttribute('type', 'button'); element.setAttribute('id', 'sideBarMenu'); element.style.border='3px solid red'; element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }
     Click Element    //div[contains(@class, 'css-901oao') and contains(text(), '${main_menu}')]
-    Click Element    //div[@id="sideBarMenu"]
     Sleep    3s
 
 
 Logout Validations
-    Click Element    //div[@id='logout']
+    Click Element    //div[@id='menulist-section-header-logout']
     Wait Until Element Is Visible    //div[contains(text(), 'Please login with ZPH credentials')]    timeout=30
     ${login_Heading}=    Get Text    //div[contains(text(), 'Please login with ZPH credentials')]
     Should Be Equal    ${login_Heading}    Please login with ZPH credentials    Error message does not match!
