@@ -90,3 +90,20 @@ Cost Estimator tests - Search by All available Provider Category
     Verify Cost Estimator Opened    ${COSTESTIMATORURL}    ${COSTESTIMATOREXPECTEDTEXT}
     ${data}=    Read Cost Estimator Provider Category and Specialities
     Validate Search by All available Provider Category    ${data}
+
+
+Cost Estimator tests - Advance Search
+    Initialize Login Data
+    Initialize Cost Estimator Data
+    Open Login Page     ${URL}
+    Set Geolocation    42.37954    -71.24642    10.0
+    Enter Group Code    ${GROUP_CODE}
+    Agree Terms
+    Enter Credentials   ${USERNAME}    ${PASSWORD}
+    Click Login
+    Skip MFA Setup
+    Cancel MFA Prompt
+    Click Cost Estimator Menu
+    Verify Cost Estimator Opened    ${COSTESTIMATORURL}    ${COSTESTIMATOREXPECTEDTEXT}
+    ${data}=    Read Cost Estimator Provider Category and Specialities
+    Validate Search Using Advance Search    ${data}
